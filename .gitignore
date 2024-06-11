@@ -3,3 +3,5 @@
 .vs
 
 eCommerce/obj/Debug/*
+
+eCommerce/bin/Debug/*
