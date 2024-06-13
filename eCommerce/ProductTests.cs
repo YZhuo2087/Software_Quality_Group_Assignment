@@ -9,7 +9,7 @@ namespace eCommerce.Tests
     {
         // Test for constructor
         [Test]
-        public void Product_Constructor_ValidData_ShouldCreateProduct()
+        public void Product_Constructor_ValidData()
         {
             // Arrange
             int id = 1;
@@ -29,7 +29,7 @@ namespace eCommerce.Tests
 
         // Tests for IncreaseStock method
         [Test]
-        public void IncreaseStock_ValidAmount_ShouldIncreaseStock()
+        public void IncreaseStock_ValidAmount()
         {
             // Arrange
             var product = new Product(1, "Test Product", 100, 50);
@@ -43,7 +43,7 @@ namespace eCommerce.Tests
         }
 
         [Test]
-        public void IncreaseStock_NegativeAmount_ShouldThrowException()
+        public void IncreaseStock_NegativeAmount()
         {
             // Arrange
             var product = new Product(1, "Test Product", 100, 50);
@@ -53,7 +53,7 @@ namespace eCommerce.Tests
         }
 
         [Test]
-        public void DecreaseStock_ValidAmount_ShouldDecreaseStock()
+        public void DecreaseStock_ValidAmount()
         {
             // Arrange
             var product = new Product(1, "Test Product", 100, 50);
@@ -67,7 +67,7 @@ namespace eCommerce.Tests
         }
 
         [Test]
-        public void DecreaseStock_NegativeAmount_ShouldThrowException()
+        public void DecreaseStock_NegativeAmount()
         {
             // Arrange
             var product = new Product(1, "Test Product", 100, 50);
@@ -77,7 +77,7 @@ namespace eCommerce.Tests
         }
 
         [Test]
-        public void DecreaseStock_MoreThanStock_ShouldThrowException()
+        public void DecreaseStock_MoreThanStock()
         {
             // Arrange
             var product = new Product(1, "Test Product", 100, 50);
