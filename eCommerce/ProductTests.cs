@@ -1,4 +1,4 @@
-﻿using eCommerce;
+using eCommerce;
 using NUnit.Framework;
 using System;
 
@@ -232,6 +232,85 @@ public class DecreaseStockTests
         // Act & Assert
         var ex = Assert.Throws<InvalidOperationException>(() => product.DecreaseStockCount(60));
         Assert.That(ex.Message, Is.EqualTo("Insufficient stock."));
+    }
+        // Test for constructor
+        [Test]
+        public void Product_Constructor_ValidData()
+        {
+            // Arrange
+            int id = 1;
+            string name = "Test Product";
+            decimal price = 100;
+            int stock = 50;
+
+            // Act
+            var product = new Product(id, name, price, stock);
+
+            // Assert
+            Assert.That(product.ProductID, Is.EqualTo(id));
+            Assert.That(product.ProductName, Is.EqualTo(name));
+            Assert.That(product.Price, Is.EqualTo(price));
+            Assert.That(product.Stock, Is.EqualTo(stock));
+        }
+
+        // Tests for IncreaseStock method
+        [Test]
+        public void IncreaseStock_ValidAmount()
+        {
+            // Arrange
+            var product = new Product(1, "Test Product", 100, 50);
+            int increaseAmount = 10;
+
+            // Act
+            product.IncreaseStock(increaseAmount);
+
+            // Assert
+            Assert.That(product.Stock, Is.EqualTo(60));
+        }
+
+        [Test]
+        public void IncreaseStock_NegativeAmount()
+        {
+            // Arrange
+            var product = new Product(1, "Test Product", 100, 50);
+
+            // Act & Assert
+            Assert.Throws<ArgumentOutOfRangeException>(() => product.IncreaseStock(-10));
+        }
+
+        [Test]
+        public void DecreaseStock_ValidAmount()
+        {
+            // Arrange
+            var product = new Product(1, "Test Product", 100, 50);
+            int decreaseAmount = 10;
+
+            // Act
+            product.DecreaseStock(decreaseAmount);
+
+            // Assert
+            Assert.That(product.Stock, Is.EqualTo(40));
+        }
+
+        [Test]
+        public void DecreaseStock_NegativeAmount()
+        {
+            // Arrange
+            var product = new Product(1, "Test Product", 100, 50);
+
+            // Act & Assert
+            Assert.Throws<ArgumentOutOfRangeException>(() => product.DecreaseStock(-10));
+        }
+
+        [Test]
+        public void DecreaseStock_MoreThanStock()
+        {
+            // Arrange
+            var product = new Product(1, "Test Product", 100, 50);
+
+            // Act & Assert
+            Assert.Throws<InvalidOperationException>(() => product.DecreaseStock(60));
+        }
     }
 }
 
