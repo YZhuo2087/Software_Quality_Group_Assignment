@@ -13,31 +13,33 @@ namespace eCommerce
         {
             if (productId < 1 || productId > 10000)
                 throw new ArgumentOutOfRangeException(nameof(productId), "ProductID must be between 1 and 10000.");
+            if (productName == null)
+                throw new ArgumentNullException(nameof(productName), "ProductName cannot be null.");
             if (price < 1 || price > 5000)
-                throw new ArgumentOutOfRangeException(nameof(price), "Price must be between 1 and 5000.");
+                throw new ArgumentOutOfRangeException(nameof(price), "Price must be between $1 and $5000.");
             if (stock < 1 || stock > 100000)
                 throw new ArgumentOutOfRangeException(nameof(stock), "Stock must be between 1 and 100000.");
-
+            
             ProductID = productId;
             ProductName = productName;
             Price = price;
             Stock = stock;
         }
 
-        public void IncreaseStock(int amount)
+        public void IncreaseStockCount(int count)
         {
-            if (amount < 0)
-                throw new ArgumentOutOfRangeException(nameof(amount), "Amount must be positive.");
-            Stock += amount;
+            if (count < 0)
+                throw new ArgumentOutOfRangeException(nameof(count), "Count must be positive.");
+            Stock += count;
         }
 
-        public void DecreaseStock(int amount)
+        public void DecreaseStockCount(int count)
         {
-            if (amount < 0)
-                throw new ArgumentOutOfRangeException(nameof(amount), "Amount must be positive.");
-            if (Stock - amount < 0)
-                throw new InvalidOperationException("Insufficient stock to decrease.");
-            Stock -= amount;
+            if (count < 0)
+                throw new ArgumentOutOfRangeException(nameof(count), "Count must be positive.");
+            if (Stock - count < 0)
+                throw new InvalidOperationException("Insufficient stock.");
+            Stock -= count;
         }
     }
 }
